@@ -23,10 +23,15 @@ android {
     buildTypes.each {
         it.buildConfigField "String", "APIXU_API", "\"42b1798a21094e5b9db65010171811\""
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
     api 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //testing
     testImplementation 'junit:junit:4.12'

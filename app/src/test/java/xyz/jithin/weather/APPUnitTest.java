@@ -10,6 +10,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.jithin.weather.model.Weather;
 import xyz.jithin.weather.network.Connector;
+import xyz.jithin.weather.util.Util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -55,5 +56,10 @@ public class APPUnitTest {
         System.out.println("Day2 Temp   :" + weather.getForecast().getForecastday().get(2).getDay().getAvgtemp_c());
         System.out.println("Day3 Temp   :" + weather.getForecast().getForecastday().get(3).getDay().getAvgtemp_c());
         System.out.println("Day4 Temp   :" + weather.getForecast().getForecastday().get(4).getDay().getAvgtemp_c());
+    }
+
+    @Test
+    public void checkDateParsing() {
+        assertEquals("week parsing failed", "Saturday", Util.getWeek("2017-11-18"));
     }
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_current_degree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/text_primary"
+        android:textSize="96sp"
+        tools:text="20\u00B0" />
+
+    <TextView
+        android:id="@+id/text_current_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_current_degree"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="@color/text_secondary"
+        android:textSize="36sp"
+        tools:text="Bangalore" />
+
+    <include
+        android:id="@+id/forecast"
+        layout="@layout/bottomsheet_forecast"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/text_current_location"
+        android:layout_marginTop="80dp" />
+
+    <include
+        android:id="@+id/progress"
+        layout="@layout/view_loading"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/retry"
+        layout="@layout/view_retry"
+        android:visibility="gone" />
+
+
+</RelativeLayout>
