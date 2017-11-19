@@ -7,13 +7,16 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Test;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import xyz.jithin.weather.fragment.WeatherFragment;
+
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -30,7 +33,8 @@ public class WeatherFragmentTest extends
         ActivityInstrumentationTestCase2<MainActivity> {
 
     CountDownLatch lock = new CountDownLatch(1);
-    private WeatherFragment fragment;
+    MockWebServer server;
+
 
     public WeatherFragmentTest(Class<MainActivity> activityClass) {
         super(activityClass);
@@ -50,6 +54,8 @@ public class WeatherFragmentTest extends
     @Test
     public void testFunctionality() throws InterruptedException {
 
+        //switch off mobile data before starting the test. mobile data enabling will not succeed the case.
+
         lock.await(5 * 1000, TimeUnit.MILLISECONDS);
 
         onView(withId(R.id.retry)).check(matches(isDisplayed()));
@@ -61,6 +67,8 @@ public class WeatherFragmentTest extends
 
         lock.await(5 * 1000, TimeUnit.MILLISECONDS);
     }
+
+
 
     private void offline(boolean enable) {
         WifiManager wifi = (WifiManager) getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
